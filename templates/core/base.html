@@ -7,6 +7,14 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+    <nav>
+        <a href="{% url 'course_selector:index' %}">WGU Viewer</a>
+        <ul class="menu">
+            <a href="{% url 'course_selector:degrees' %}">Degree Programs</a>
+            <a href="{% url 'course_selector:degree-comparer' %}">Degree Comparer</a>
+            <a href="{% url 'course_selector:courses' %}">Course List</a>
+        </ul>
+    </nav>
     {% block content %}
     {% endblock %}
 </body>

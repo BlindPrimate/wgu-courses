@@ -16,7 +16,7 @@ class Course(models.Model):
     course_number = models.CharField(blank=False, default="C", max_length=4)
     description = models.TextField(blank=False, max_length=10000)
     prereqs = models.ManyToManyField('self', blank=True, verbose_name="Prerequisites")
-    certificate_earned = models.ManyToManyField(Certification, blank=True)
+    certificate_earned = models.ForeignKey(Certification, blank=True, null=True, on_delete=models.PROTECT)
     comp_units = models.IntegerField(
         'Competency Units',
         default=3,
@@ -50,4 +50,3 @@ class Degree(models.Model):
 
     def __str__(self):
         return self.degree_type + " " + self.name
-        # return self.name

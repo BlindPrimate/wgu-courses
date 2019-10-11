@@ -1,0 +1,15 @@
+
+{% extends 'core/base.html'%}
+{% block title %}
+    Degree Programs
+{% endblock %}
+{% block content %}
+    {{degree.name}}
+    <ul>
+        {% for course in degree.courses.all %}
+        <li>
+            <a href="{% url 'course_selector:course-detail' course.id %}">{{course.course_number}} {{course.name}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
