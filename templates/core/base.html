@@ -1,3 +1,4 @@
+{% load sass_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,15 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock %}</title>
+    <link type="text/css" href="{% sass_src 'styles/main.scss' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav>
-        <a href="{% url 'course_selector:index' %}">WGU Viewer</a>
-        <ul class="menu">
-            <a href="{% url 'course_selector:degrees' %}">Degree Programs</a>
-            <a href="{% url 'course_selector:degree-comparer' %}">Degree Comparer</a>
-            <a href="{% url 'course_selector:courses' %}">Course List</a>
-        </ul>
+    <nav id="nav-bar" class="clearfix">
+        <div class="container">
+            <a id="logo" href="{% url 'course_selector:index' %}">WGU Viewer</a>
+            <ul class="menu clear-list">
+                <li>
+                    <a href="{% url 'course_selector:courses' %}">Course List</a>
+                </li>
+                <li>
+                    <a href="{% url 'course_selector:degrees' %}">Degree Programs</a>
+                </li>
+                <li>
+                    <a href="{% url 'course_selector:degree-comparer' %}">Degree Comparer</a>
+                </li>
+            </ul>
+        </div>
     </nav>
     {% block content %}
     {% endblock %}

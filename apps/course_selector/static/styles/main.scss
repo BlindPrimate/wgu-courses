@@ -1,0 +1,55 @@
+@import 'variables';
+@import 'mixins';
+
+body {
+    background: $background-color;
+    font-family: $main-font-family;
+    margin: 0;
+    padding: 0;
+}
+
+
+// utility classes
+.clearfix {
+    &:after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+}
+.clear-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+
+// main css
+#nav-bar {
+    padding: 20px 0;
+    background-color: $wgu-blue;
+    color: white;
+    a {
+        color: white;
+        text-decoration: none;
+    }
+    #logo {
+        float: left;
+    }
+    .menu {
+        float: right;
+        li {
+            display: inline;
+            margin: 0 15px;
+        }
+        a {
+            &:active {
+            }
+        }
+    }
+}
