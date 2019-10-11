@@ -1,4 +1,5 @@
 {% load sass_tags %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,5 +29,6 @@
     </nav>
     {% block content %}
     {% endblock %}
+    <script type="text/javascript" src="{% static 'js/app.bundle.js' %}"></script>
 </body>
 </html>
