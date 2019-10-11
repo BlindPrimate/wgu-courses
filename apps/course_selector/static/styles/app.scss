@@ -1,5 +1,17 @@
+
+
+// bootstrap imports
+@import 'bootstrap/bootstrap-grid.scss';
+
+
+// custom imports
 @import 'variables';
 @import 'mixins';
+
+// page imports
+@import 'pages/course_list';
+@import 'pages/degree_list';
+
 
 body {
     background: $background-color;
@@ -21,11 +33,6 @@ body {
     margin: 0;
     padding: 0;
     list-style-type: none;
-}
-
-.container {
-    max-width: 900px;
-    margin: 0 auto;
 }
 
 
@@ -51,5 +58,15 @@ body {
             &:active {
             }
         }
+    }
+}
+
+
+#side-menu {
+    a {
+        color: $wgu-blue;
+        text-decoration: none;
+        padding: 7px 0;
+        display: inline-block;
     }
 }

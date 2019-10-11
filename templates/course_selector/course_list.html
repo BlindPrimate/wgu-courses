@@ -3,12 +3,18 @@
     Course Listings
 {% endblock %}
 {% block content %}
-    Course Listings
-    <ul>
-    {% for course in courses %}
-        <li>
-            <a href="{% url 'course_selector:course-detail' course.id %}">{{course.name}}</a>
-        </li>
-    {% endfor %}
-    </ul>
+    <div class="container">
+    <div id="side-menu" class="col-lg-3">
+        <ul class="clear-list">
+        {% for course in courses %}
+            <li>
+                <a href="{% url 'course_selector:course-detail' course.id %}">{{course.name}}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+    <div class="col-lg-9">
+        
+    </div>
+    </div>
 {% endblock %}
