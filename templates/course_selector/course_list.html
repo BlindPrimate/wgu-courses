@@ -4,17 +4,30 @@
 {% endblock %}
 {% block content %}
     <div class="container">
-    <div id="side-menu" class="col-lg-3">
-        <ul class="clear-list">
-        {% for course in courses %}
-            <li>
-                <a href="{% url 'course_selector:course-detail' course.id %}">{{course.name}}</a>
-            </li>
-        {% endfor %}
-        </ul>
-    </div>
-    <div class="col-lg-9">
-        
-    </div>
+        <div class="row">
+            <div id="side-menu" class="col-lg-3">
+                <ul class="clear-list">
+                {% for course in courses %}
+                    <li>
+                        <a 
+                        data-card-index-link="{{ course.pk }}" 
+                        href="#">
+                            {{course.name}}
+                        </a>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+            <div class="col-lg-9">
+                {% for course in courses %}
+                    <div class="course-card hidden" data-card-index="{{ course.pk }}">
+                        <h3>{{course.name}}</h3>
+                        <p>{{ course.comp_units }}</p>
+                        <p>{{ course.course_number }}</p>
+                        <p>{{ course.description }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 {% endblock %}

@@ -2487,6 +2487,9 @@ body {
   padding: 0;
   list-style-type: none; }
 
+.hidden {
+  display: none; }
+
 #nav-bar {
   padding: 20px 0;
   background-color: #003057;
@@ -2501,6 +2504,11 @@ body {
     #nav-bar .menu li {
       display: inline;
       margin: 0 15px; }
+    #nav-bar .menu a {
+      padding: 10px 15px; }
+      #nav-bar .menu a.active {
+        background-color: white;
+        color: #003057; }
 
 #side-menu a {
   color: #003057;

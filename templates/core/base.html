@@ -16,13 +16,22 @@
             <a id="logo" href="{% url 'course_selector:index' %}">WGU Viewer</a>
             <ul class="menu clear-list">
                 <li>
-                    <a href="{% url 'course_selector:courses' %}">Course List</a>
+                    {% url 'course_selector:courses' as url %}
+                    <a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">
+                        Course List
+                    </a>
                 </li>
                 <li>
-                    <a href="{% url 'course_selector:degrees' %}">Degree Programs</a>
+                    {% url 'course_selector:degrees' as url %}
+                    <a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">
+                        Degree Programs
+                    </a>
                 </li>
                 <li>
-                    <a href="{% url 'course_selector:degree-comparer' %}">Degree Comparer</a>
+                    {% url 'course_selector:degree-comparer' as url %}
+                    <a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">
+                        Degree Comparer
+                    </a>
                 </li>
             </ul>
         </div>

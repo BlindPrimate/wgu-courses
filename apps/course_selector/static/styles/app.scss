@@ -35,6 +35,10 @@ body {
     list-style-type: none;
 }
 
+.hidden {
+    display: none;
+}
+
 
 // main css
 #nav-bar {
@@ -55,7 +59,10 @@ body {
             margin: 0 15px;
         }
         a {
-            &:active {
+            padding: 10px 15px;
+            &.active {
+                background-color: white;
+                color: $wgu-blue;
             }
         }
     }
