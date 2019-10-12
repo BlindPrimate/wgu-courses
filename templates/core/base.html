@@ -17,19 +17,19 @@
             <ul class="menu clear-list">
                 <li>
                     {% url 'course_selector:courses' as url %}
-                    <a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">
+                    <a class="{% if url in request.path  %}active{% endif %}" href="{{ url }}">
                         Course List
                     </a>
                 </li>
                 <li>
                     {% url 'course_selector:degrees' as url %}
-                    <a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">
+                    <a class="{% if url in request.path %}active{% endif %}" href="{{ url }}">
                         Degree Programs
                     </a>
                 </li>
                 <li>
                     {% url 'course_selector:degree-comparer' as url %}
-                    <a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">
+                    <a class="{% if url in request.path %}active{% endif %}" href="{{ url }}">
                         Degree Comparer
                     </a>
                 </li>

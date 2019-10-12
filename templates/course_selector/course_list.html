@@ -25,6 +25,16 @@
                         <p>{{ course.comp_units }}</p>
                         <p>{{ course.course_number }}</p>
                         <p>{{ course.description }}</p>
+                        <h4>Degrees requiring this course</h4>
+                        <ul class="clear-list">
+                            {% for degree in course.degrees.all %}
+                                <li>
+                                    <a href="{% url 'course_selector:degrees' %}/{{degree.id}}">
+                                        {{ degree.name }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
                     </div>
                 {% endfor %}
             </div>

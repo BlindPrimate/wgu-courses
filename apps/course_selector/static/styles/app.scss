@@ -2,6 +2,11 @@
 
 // bootstrap imports
 @import 'bootstrap/bootstrap-grid.scss';
+@import 'bootstrap/mixins';
+
+@import 'bootstrap/type';
+
+
 
 
 // custom imports
@@ -18,6 +23,10 @@ body {
     font-family: $main-font-family;
     margin: 0;
     padding: 0;
+    color: $wgu-blue;
+    a {
+        color: $wgu-text-blue;
+    }
 }
 
 
@@ -43,11 +52,10 @@ body {
 // main css
 #nav-bar {
     padding: 20px 0;
-    color: $wgu-blue;
     background-color: white;
     border-bottom: 7px solid $wgu-blue;
     a {
-        color: $wgu-blue;
+        color: $wgu-text-blue;
         text-decoration: none;
     }
     #logo {
@@ -63,7 +71,7 @@ body {
             margin: 10px 0;
             padding: 2px 0;
             &.active {
-                border-bottom: 2px solid $wgu-blue;
+                border-bottom: 2px solid $wgu-text-blue;
             }
         }
     }
@@ -72,7 +80,6 @@ body {
 
 #side-menu {
     a {
-        color: $wgu-blue;
         text-decoration: none;
         padding: 7px 0;
         display: inline-block;

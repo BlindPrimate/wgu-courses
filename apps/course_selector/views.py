@@ -24,13 +24,3 @@ class DegreesList(ListView):
 class DegreeComparer(ListView):
     template_name = 'course_selector/degree_comparer.html'
     model = Degree
-
-class DegreeDetail(DetailView):
-    context_object_name = 'degree'
-    template_name = 'course_selector/degree_detail.html'
-    model = Degree
-
-class CourseDetail(DetailView):
-    context_object_name = 'course'
-    template_name = 'course_selector/course_detail.html'
-    model = Course

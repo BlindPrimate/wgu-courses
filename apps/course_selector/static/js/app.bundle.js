@@ -132,6 +132,12 @@ window.addEventListener('mousedown', x => {
     switch_card(click_target);
   }
 });
+const path = window.location.pathname.split('/');
+const course_target_id = path[path.length - 2];
+
+if (possible_click_targets.includes(course_target_id)) {
+  switch_card(course_target_id);
+}
 
 /***/ })
 

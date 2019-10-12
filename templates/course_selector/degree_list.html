@@ -22,14 +22,27 @@
             <div class="col-lg-9">
                 {% for degree in degrees %}
                     <div class="course-card" data-card-index="{{ degree.pk }}">
-                        <h3>{{ degree.name }}</h3>
+                        <h3>{{ degree.degree_type }} {{ degree.name }}</h3>
                         <p>{{ degree.description }}</p>
+                        <a href="{{ degree.link }}">Official WGU Degree Page</a>
                         <h4>Courses Included</h4>
-                        <ul>
+                        <ul class="clear-list">
                             {% for course in degree.courses.all %}
-                                <li>{{ course.name }}</li>
+                                <li>
+                                    <a href="{% url 'course_selector:courses' %}/{{course.id}}">
+                                        {{ course.name }}
+                                    </a>
+                                </li>
                             {% endfor %}
                         </ul>
+                        {% if degree.earned_certifications.all %}
+                        <h4>Certifications Included</h4>
+                        <ul class="clear-list">
+                            {% for cert in degree.earned_certifications.all %}
+                                <li>{{ cert.name }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                     </div>
                 {% endfor %}
             </div>
