@@ -2492,10 +2492,11 @@ body {
 
 #nav-bar {
   padding: 20px 0;
-  background-color: #003057;
-  color: white; }
+  color: #003057;
+  background-color: white;
+  border-bottom: 7px solid #003057; }
   #nav-bar a {
-    color: white;
+    color: #003057;
     text-decoration: none; }
   #nav-bar #logo {
     float: left; }
@@ -2505,10 +2506,10 @@ body {
       display: inline;
       margin: 0 15px; }
     #nav-bar .menu a {
-      padding: 10px 15px; }
+      margin: 10px 0;
+      padding: 2px 0; }
       #nav-bar .menu a.active {
-        background-color: white;
-        color: #003057; }
+        border-bottom: 2px solid #003057; }
 
 #side-menu a {
   color: #003057;

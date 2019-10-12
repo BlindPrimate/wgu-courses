@@ -43,10 +43,11 @@ body {
 // main css
 #nav-bar {
     padding: 20px 0;
-    background-color: $wgu-blue;
-    color: white;
+    color: $wgu-blue;
+    background-color: white;
+    border-bottom: 7px solid $wgu-blue;
     a {
-        color: white;
+        color: $wgu-blue;
         text-decoration: none;
     }
     #logo {
@@ -59,10 +60,10 @@ body {
             margin: 0 15px;
         }
         a {
-            padding: 10px 15px;
+            margin: 10px 0;
+            padding: 2px 0;
             &.active {
-                background-color: white;
-                color: $wgu-blue;
+                border-bottom: 2px solid $wgu-blue;
             }
         }
     }

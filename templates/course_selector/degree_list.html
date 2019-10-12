@@ -4,12 +4,35 @@
     Degree Programs
 {% endblock %}
 {% block content %}
-    Degree Programs
-    <ul>
-    {% for degree in degrees %}
-        <li>
-            <a href="{% url 'course_selector:degree-detail' degree.id %}">{{degree.name}}</a>
-        </li>
-    {% endfor %}
-    </ul>
+    <div class="container">
+        <div class="row">
+            <div id="side-menu" class="col-lg-3">
+                <ul class="clear-list">
+                {% for degree in degrees %}
+                    <li>
+                        <a 
+                        data-card-index-link="{{ degree.pk }}" 
+                        href="#">
+                            {{degree.degree_type }} {{ degree.name }}
+                        </a>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+            <div class="col-lg-9">
+                {% for degree in degrees %}
+                    <div class="course-card" data-card-index="{{ degree.pk }}">
+                        <h3>{{ degree.name }}</h3>
+                        <p>{{ degree.description }}</p>
+                        <h4>Courses Included</h4>
+                        <ul>
+                            {% for course in degree.courses.all %}
+                                <li>{{ course.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

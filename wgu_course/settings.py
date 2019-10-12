@@ -51,6 +51,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+if DEBUG == True:
+    MIDDLEWARE = [
+        'djdev_panel.middleware.DebugMiddleware',
+    ] + MIDDLEWARE
+
+
+
 ROOT_URLCONF = 'wgu_course.urls'
 
 
@@ -140,3 +147,4 @@ SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR,'static', 'compiled-css')
 SASS_PROCESSOR_INCLUDE_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+

@@ -36,7 +36,7 @@ class Course(models.Model):
 class Degree(models.Model):
     name = models.CharField(blank=False, max_length=255)
     description = models.CharField(blank=False, max_length=10000)
-    courses = models.ManyToManyField(Course)
+    courses = models.ManyToManyField(Course, related_name="degrees")
     earned_certifications = models.ManyToManyField(Certification, blank=True)
     link = models.URLField(blank=False, default="http://www.wgu.edu", max_length=200)
     degree_type = models.CharField(
