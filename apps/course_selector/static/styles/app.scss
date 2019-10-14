@@ -51,6 +51,7 @@ body {
 
 // main css
 #nav-bar {
+    margin: 0 0 20px;
     padding: 20px 0;
     background-color: white;
     border-bottom: 7px solid $wgu-blue;
@@ -68,6 +69,7 @@ body {
             margin: 0 15px;
         }
         a {
+            font-size: 0.9em;
             margin: 10px 0;
             padding: 2px 0;
             &.active {
@@ -80,8 +82,70 @@ body {
 
 #side-menu {
     a {
+        font-size: 0.8em;
         text-decoration: none;
-        padding: 7px 0;
+        padding: 7px 10px;
+        border-radius: 2px;
         display: inline-block;
+        &.active {
+            background-color: $wgu-text-blue;
+            color: white;
+        }
+    }
+}
+
+
+.course-card {
+    .comp-units {
+        overflow: hidden;
+        display: inline-block;
+        border: 1px solid lighten($wgu-text-blue, 40%);
+        border-radius: 1em;
+        text-align: center;
+        background-color: lighten($wgu-text-blue, 50%);
+        color: $wgu-blue;
+        margin-right: 20px;
+        box-shadow: 0 0 5px  rgba(40, 40, 40, 0.05);
+        .comp-header {
+            display: inline;
+            background-color: lighten($wgu-text-blue, 10%);
+            width: 100%;
+            margin: 0;
+            color: white;
+            padding: 5px 10px;
+            font-size: 1em;
+            p {
+                font-size: 0.6em;
+                margin: 0;
+            }
+        }
+        p {
+            span {
+                font-size: 0.7em;
+            }
+            margin: 0;
+            font-size: 1em;
+            display: inline-block;
+            padding: 0 10px;
+        }
+    }
+}
+
+
+.more-box {
+    h6 {
+        &:after {
+            content: "";
+            padding: 0 0 5px;
+            width: 30px;
+            display: block;
+            border-bottom: 2px solid $wgu-text-blue;
+
+        }
+    }
+    a {
+        text-decoration: none;
+        font-size: 0.8em;
+
     }
 }

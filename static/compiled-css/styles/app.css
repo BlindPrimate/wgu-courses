@@ -2586,6 +2586,7 @@ body {
   display: none; }
 
 #nav-bar {
+  margin: 0 0 20px;
   padding: 20px 0;
   background-color: white;
   border-bottom: 7px solid #003057; }
@@ -2600,14 +2601,60 @@ body {
       display: inline;
       margin: 0 15px; }
     #nav-bar .menu a {
+      font-size: 0.9em;
       margin: 10px 0;
       padding: 2px 0; }
       #nav-bar .menu a.active {
         border-bottom: 2px solid #327da9; }
 
 #side-menu a {
+  font-size: 0.8em;
   text-decoration: none;
-  padding: 7px 0;
+  padding: 7px 10px;
+  border-radius: 2px;
   display: inline-block; }
+  #side-menu a.active {
+    background-color: #327da9;
+    color: white; }
+
+.course-card .comp-units {
+  overflow: hidden;
+  display: inline-block;
+  border: 1px solid #bcdaeb;
+  border-radius: 1em;
+  text-align: center;
+  background-color: #e3f0f7;
+  color: #003057;
+  margin-right: 20px;
+  box-shadow: 0 0 5px rgba(40, 40, 40, 0.05); }
+  .course-card .comp-units .comp-header {
+    display: inline;
+    background-color: #4698c8;
+    width: 100%;
+    margin: 0;
+    color: white;
+    padding: 5px 10px;
+    font-size: 1em; }
+    .course-card .comp-units .comp-header p {
+      font-size: 0.6em;
+      margin: 0; }
+  .course-card .comp-units p {
+    margin: 0;
+    font-size: 1em;
+    display: inline-block;
+    padding: 0 10px; }
+    .course-card .comp-units p span {
+      font-size: 0.7em; }
+
+.more-box h6:after {
+  content: "";
+  padding: 0 0 5px;
+  width: 30px;
+  display: block;
+  border-bottom: 2px solid #327da9; }
+
+.more-box a {
+  text-decoration: none;
+  font-size: 0.8em; }
 
 /*# sourceMappingURL=app.css.map */

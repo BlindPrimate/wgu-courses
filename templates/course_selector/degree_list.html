@@ -22,10 +22,10 @@
             <div class="col-lg-9">
                 {% for degree in degrees %}
                     <div class="course-card" data-card-index="{{ degree.pk }}">
-                        <h3>{{ degree.degree_type }} {{ degree.name }}</h3>
+                        <h4>{{ degree.degree_type }} {{ degree.name }}</h4>
                         <p>{{ degree.description }}</p>
                         <a href="{{ degree.link }}">Official WGU Degree Page</a>
-                        <h4>Courses Included</h4>
+                        <h6>Courses Included</h6>
                         <ul class="clear-list">
                             {% for course in degree.courses.all %}
                                 <li>
