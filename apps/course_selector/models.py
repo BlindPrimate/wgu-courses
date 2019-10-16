@@ -6,6 +6,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 class Certification(models.Model):
     name = models.CharField(blank=False, max_length=255)
     description = models.CharField(blank=True, max_length=10000)
+    link = models.URLField(default="http://www.wgu.edu")
 
     def __str__(self):
         return self.name

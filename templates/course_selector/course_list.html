@@ -43,6 +43,32 @@
                                 {% endfor %}
                             </ul>
                         </div>
+                        {% if course.prereqs.all %}
+                        <div class="more-box">
+                            <h6>Prerequisites</h6>
+                            <ul class="clear-list">
+                                {% for course in course.prereqs.all %}
+                                    <li>
+                                        <a href="{% url 'course_selector:courses' %}/{{course.id}}">
+                                            {{ course.name }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                        {% if course.certificate_earned %}
+                        <div class="more-box">
+                            <h6>Certificates Earned Upon Completion</h6>
+                            <ul class="clear-list">
+                                <li>
+                                   <a href="{{course.certificate_earned.link}}">
+                                        {{ course.certificate_earned.name }}
+                                   </a>
+                                </li>
+                            </ul>
+                        </div>
+                        {% endif %}
                     </div>
                 {% endfor %}
             </div>

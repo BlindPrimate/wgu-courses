@@ -4,5 +4,25 @@
     Degree Program Comparer
 {% endblock %}
 {% block content %}
-    Degree Program Comparer
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <form action="{% url 'course_selector:degree-comparer' %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-primary" type="button" value="Apply">
+                {% comment %} <button action="submit" type="button" class="btn btn-primary">Apply</button> {% endcomment %}
+                <ul class="clear-list">
+                    {% for field in form.degrees %}
+                        <li>{{ field }}</li>
+                    {% endfor %}
+                </ul>
+            </form>
+        </div>
+        <div class="col-lg-8">
+            {% for course in courses %}
+                {{ course.name }}
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock %}

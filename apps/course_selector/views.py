@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, FormView
 from .models import Course, Degree
+from .forms import DegreeComparerForm
 
 # Create your views here.
 
@@ -21,6 +22,16 @@ class DegreesList(ListView):
     template_name = 'course_selector/degree_list.html'
     model = Degree
 
-class DegreeComparer(ListView):
+class DegreeComparer(FormView):
     template_name = 'course_selector/degree_comparer.html'
-    model = Degree
+    form_class = DegreeComparerForm
+
+    def post(self, request):
+        form = DegreeComparerForm(request.POST)
+        return_obj = {
+            'form':form,
+            'degrees': Degree.objects.all(),
+            'courses': Course.objects.all()
+        }
+        return render(request, 'course_selector/degree_comparer.html', return_obj)
+
