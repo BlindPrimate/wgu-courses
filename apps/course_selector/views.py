@@ -12,10 +12,6 @@ class CourseList(ListView):
     context_object_name = 'courses'
     template_name = 'course_selector/course_list.html'
     model = Course
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['knock'] = "knock"
-        return context
 
 class DegreesList(ListView):
     context_object_name = 'degrees'
@@ -26,12 +22,39 @@ class DegreeComparer(FormView):
     template_name = 'course_selector/degree_comparer.html'
     form_class = DegreeComparerForm
 
+    def build_matrix(self, degrees, courses):
+        pruned_courses= courses.distinct()
+
+        matrix = [[None, *degrees]]
+        for course in pruned_courses:
+            row = [course.name]
+            for degree in degrees:
+                # print(Course.objects.filter(degrees=degree))
+                if Degree.objects.filter(id=degree.id, courses=course).exists():
+                    row.append(True)
+                else:
+                    row.append(False)
+            matrix.append(row)
+        # print(matrix)
+
+
+
+        
+        return matrix
+
+
+
+
     def post(self, request):
         form = DegreeComparerForm(request.POST)
+        degrees = Degree.objects.filter(pk__in=request.POST.getlist('degrees'))
+        courses = Course.objects.filter(degrees__in=degrees)
+        table_data = self.build_matrix(degrees, courses)
+            
         return_obj = {
             'form':form,
             'degrees': Degree.objects.all(),
-            'courses': Course.objects.all()
+            'table': table_data
         }
         return render(request, 'course_selector/degree_comparer.html', return_obj)
 

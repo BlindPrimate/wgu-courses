@@ -6,22 +6,52 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-lg-4">
-            <form action="{% url 'course_selector:degree-comparer' %}" method="POST">
-                {% csrf_token %}
-                <input type="submit" class="btn btn-primary" type="button" value="Apply">
-                {% comment %} <button action="submit" type="button" class="btn btn-primary">Apply</button> {% endcomment %}
-                <ul class="clear-list">
-                    {% for field in form.degrees %}
-                        <li>{{ field }}</li>
-                    {% endfor %}
-                </ul>
-            </form>
+        <div class="col-lg-3">
+            <div id="side-menu">
+                <form action="{% url 'course_selector:degree-comparer' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-primary" type="button" value="Apply">
+                    <ul class="clear-list">
+                        {% for field in form.degrees %}
+                            <li>{{ field }}</li>
+                        {% endfor %}
+                    </ul>
+                </form>
+            </div>
         </div>
-        <div class="col-lg-8">
-            {% for course in courses %}
-                {{ course.name }}
-            {% endfor %}
+        <div class="col-lg-9">
+            {% if table %}
+            <table class="table">
+                <thead>
+                    {% for row in table|slice:":1" %}
+                    <tr>
+                        {% for item in row %}
+                            {% if item %}
+                                <th>{{ item }}</th>
+                            {% else %}
+                                <th></th>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </thead>
+                <tbody>
+                    {% for row in table|slice:"1:" %}
+                    <tr>
+                        {% for item in row %}
+                            {% if forloop.first %}
+                                <td>{{ item }}</td>
+                            {% elif item == True %}
+                                <td class="checked"><i class="fas fa-check-square"></i></td>
+                            {% else %}
+                                <td></td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
         </div>
     </div>
 </div>
