@@ -4,3 +4,4 @@ __pycache__
 *.pyc
 migrations/
 node_modules/
+wgu_course/settings/production.py
