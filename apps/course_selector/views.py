@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, FormView
-from .models import Course, Degree
+from django.views.generic import ListView, DetailView, FormView, TemplateView
+from .models import Course, Degree, School
 from .forms import DegreeComparerForm
 
 # Create your views here.
@@ -13,10 +13,14 @@ class CourseList(ListView):
     template_name = 'course_selector/course_list.html'
     model = Course
 
-class DegreesList(ListView):
-    context_object_name = 'degrees'
-    template_name = 'course_selector/degree_list.html'
-    model = Degree
+class DegreesList(TemplateView):
+    # context_object_name = 'degrees'
+    # template_name = 'course_selector/degree_list.html'
+    def get(self, request):
+        context = {}
+        context['categorized'] = School.objects.all()
+        context['degrees'] =  Degree.objects.all()
+        return render(request, template_name='course_selector/degree_list.html', context=context)
 
 class DegreeComparer(FormView):
     template_name = 'course_selector/degree_comparer.html'

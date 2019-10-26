@@ -9,14 +9,17 @@
             <div class="row">
                 <div id="side-menu" class="col-lg-3">
                     <ul class="clear-list">
-                    {% for degree in degrees %}
-                        <li>
-                            <a 
-                            data-card-index-link="{{ degree.pk }}" 
-                            href="#">
-                                {{degree.degree_type }} {{ degree.name }}
-                            </a>
-                        </li>
+                    {% for school in categorized %}
+                        <h6>{{ school.name }}</h6>
+                        {% for degree in school.degrees.all %}
+                            <li>
+                                <a 
+                                data-card-index-link="{{ degree.pk }}" 
+                                href="#">
+                                    {{ degree.degree_type }} {{ degree.name }}
+                                </a>
+                            </li>
+                        {% endfor %}
                     {% endfor %}
                     </ul>
                 </div>
@@ -25,6 +28,7 @@
                         <div class="course-card" data-card-index="{{ degree.pk }}">
                             <h4>{{ degree.degree_type }} {{ degree.name }}</h4>
                             <p>{{ degree.description }}</p>
+                            <p>{{ degree.school }}</p>
                             <a href="{{ degree.link }}">Official WGU Degree Page</a>
                             <div class="row">
                                 <div class="more-box col-lg-6">

@@ -2852,10 +2852,10 @@ h6 {
   font-size: 1.6em; }
 
 p {
-  font-size: 1.2em; }
+  font-size: 1.3em; }
 
 a {
-  font-size: 1.3em; }
+  font-size: 1.4em; }
 
 .clearfix:after {
   content: "";
@@ -2931,7 +2931,7 @@ input[type=checkbox] {
     text-decoration: none; }
   #nav-bar #logo {
     float: left;
-    font-size: 1.6em; }
+    font-size: 1.8em; }
   #nav-bar .menu {
     float: right; }
     #nav-bar .menu li {
@@ -2962,8 +2962,7 @@ input[type=checkbox] {
   text-align: center;
   background-color: #e3f0f7;
   color: #003057;
-  margin-right: 20px;
-  box-shadow: 0 0 5px rgba(40, 40, 40, 0.05); }
+  margin-right: 20px; }
   .course-card .comp-units .comp-header {
     display: inline-block;
     background-color: #4698c8;
@@ -2988,6 +2987,9 @@ input[type=checkbox] {
   width: 30px;
   display: block;
   border-bottom: 2px solid #327da9; }
+
+.more-box li {
+  margin: 4px 0; }
 
 .more-box a {
   text-decoration: none;
@@ -3027,6 +3029,11 @@ input[type=checkbox] {
   #footer a {
     color: white;
     text-decoration: none; }
+    #footer a i {
+      font-size: 1.4em;
+      vertical-align: middle;
+      display: inline-block;
+      margin-right: 7px; }
   #footer ul {
     margin: 0;
     padding: 0;

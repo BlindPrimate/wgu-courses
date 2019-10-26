@@ -1,6 +1,10 @@
 from django.db import models 
 from django.core.validators import MinValueValidator, MaxValueValidator
 
+class School(models.Model):
+    name = models.CharField(blank=False, max_length=100)
+    def __str__(self):
+        return self.name
 
 class Certification(models.Model):
     name = models.CharField(blank=False, max_length=255)
@@ -39,6 +43,13 @@ class Degree(models.Model):
     courses = models.ManyToManyField(Course, related_name="degrees")
     earned_certifications = models.ManyToManyField(Certification, blank=True)
     link = models.URLField(blank=False, default="http://www.wgu.edu", max_length=200)
+    school = models.ForeignKey(
+        School, 
+        blank=True, 
+        null=True, 
+        on_delete=models.PROTECT, 
+        related_name="degrees"
+    )
     degree_type = models.CharField(
         max_length=4,
         default="B.S.",
