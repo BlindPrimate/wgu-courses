@@ -50,9 +50,75 @@ body {
 }
 
 
+// universal css
+
+input[type=checkbox] {
+    appearance: none;
+    -webkit-appearance: none;
+    padding: 6px;
+    background-color: rgb(243, 243, 243);
+    border: solid 1px rgb(148, 147, 147);
+    display: inline-block;
+    position: relative;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(0, 0, 0, 0.1);
+    &:focus {
+        outline: 1px solid $wgu-text-blue;
+    }
+    &:checked {
+        position: absolute;
+        top: 0;
+        left: 0;
+        position: relative;
+        color: $wgu-text-blue;
+        &:after {
+            content: '\2714';
+            font-size: 14px;
+            position: absolute;
+            top: -2px;
+            left: 1px;
+        }
+    }
+}
+
+
+.link-button {
+    padding: 10px 15px;
+    background: green;
+    border: none;
+    color: white;
+    box-shadow: $button-box-shadow;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.form-button {
+    padding: 10px 15px;
+    background: green;
+    border: none;
+    color: white;
+    box-shadow: $button-box-shadow;
+    text-decoration: none;
+}
+
+
 // main css
+
+#main-content {
+    padding: 20px 0 20px;
+}
+
+
+
+#home-jumbotron {
+    background: $wgu-text-blue;
+    padding: 20px 0 20px;
+    color: white;
+}
+
+
 #nav-bar {
-    margin: 0 0 20px;
+    margin: 0;
     padding: 20px 0;
     background-color: white;
     border-bottom: 7px solid $wgu-blue;
@@ -158,5 +224,16 @@ body {
         color: green;
         margin: auto;
         vertical-align: middle;
+    }
+}
+
+
+#degree-picker {
+    li {
+        padding: 3px;
+        font-size: .75em;
+        input {
+            top: 3px;
+        }
     }
 }

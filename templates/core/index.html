@@ -3,5 +3,16 @@
     Title
 {% endblock %}
 {% block content %}
-    Test TEst
+    <div id="home-jumbotron">
+        <div class="container">
+            <h1>
+                Welcome to the WGU Viewer.  
+            </h1>
+            <p>This tool will help you explore the various degree programs that Western Governors University offers in a more user-friendly and condensed way.</p>
+            <a class="link-button" href="{% url 'course_selector:degree-comparer'%}">Get Started</a>
+        </div>
+    </div>
+    <div id="main-content">
+    
+    </div>
 {% endblock %}

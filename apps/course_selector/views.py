@@ -27,15 +27,13 @@ class DegreeComparer(FormView):
 
         matrix = [[None, *degrees]]
         for course in pruned_courses:
-            row = [course.name]
+            row = [course]
             for degree in degrees:
-                # print(Course.objects.filter(degrees=degree))
                 if Degree.objects.filter(id=degree.id, courses=course).exists():
                     row.append(True)
                 else:
                     row.append(False)
             matrix.append(row)
-        # print(matrix)
 
 
 

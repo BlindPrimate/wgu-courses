@@ -43,20 +43,29 @@ const switch_card = (card_id) => {
     show_elements(target_card);
 }
 
+(() => {
 
-// event listener for card-switcher (coures & degrees page)
-window.addEventListener('mousedown', (x) => {
-    const click_target = x.target.dataset.cardIndexLink;
-    if (possible_click_targets.includes(click_target)) {
-        switch_card(click_target);
+    // event listener for card-switcher (coures & degrees page)
+    window.addEventListener('mousedown', (x) => {
+        const click_target = x.target.dataset.cardIndexLink;
+        if (possible_click_targets.includes(click_target)) {
+            switch_card(click_target);
+        }
+    });
+
+
+    // prevent card-switching code from firing on anything other than card links
+    const path = window.location.pathname.split('/');
+    const course_target_id = path[path.length - 2];
+
+    // handles external links to load specific course-card by id
+    // www.domain.com/courses/<id>
+    if (possible_click_targets.includes(course_target_id)) {
+        switch_card(course_target_id);
+    } else {
+        switch_card(possible_click_targets[0])
     }
-});
 
 
-// prevent card-switching code from firing on anything other than card links
-const path = window.location.pathname.split('/');
-const course_target_id = path[path.length - 2];
 
-if (possible_click_targets.includes(course_target_id)) {
-    switch_card(course_target_id);
-}
+})();

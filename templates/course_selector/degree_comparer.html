@@ -4,54 +4,64 @@
     Degree Program Comparer
 {% endblock %}
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-lg-3">
-            <div id="side-menu">
-                <form action="{% url 'course_selector:degree-comparer' %}" method="POST">
-                    {% csrf_token %}
-                    <input type="submit" class="btn btn-primary" type="button" value="Apply">
-                    <ul class="clear-list">
-                        {% for field in form.degrees %}
-                            <li>{{ field }}</li>
-                        {% endfor %}
-                    </ul>
-                </form>
+<div id="main-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div id="degree-picker">
+                    <form action="{% url 'course_selector:degree-comparer' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="submit" class="form-button" type="button" value="Apply">
+                        <ul class="clear-list">
+                            {% for field in form.degrees %}
+                                <li>{{ field }}</li>
+                            {% endfor %}
+                        </ul>
+                    </form>
+                </div>
             </div>
-        </div>
-        <div class="col-lg-9">
-            {% if table %}
-            <table class="table">
-                <thead>
-                    {% for row in table|slice:":1" %}
-                    <tr>
-                        {% for item in row %}
-                            {% if item %}
-                                <th>{{ item }}</th>
-                            {% else %}
-                                <th></th>
-                            {% endif %}
+            <div class="col-lg-9">
+                {% if table %}
+                <table class="table">
+                    <thead>
+                        {% for row in table|slice:":1" %}
+                        <tr>
+                            {% for degree in row %}
+                                {% if degree %}
+                                    <th>
+                                        <a href="{% url 'course_selector:degrees' %}/{{ degree.pk }}">
+                                            {{ degree }}
+                                        </a>
+                                    </th>
+                                {% else %}
+                                    <th></th>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
                         {% endfor %}
-                    </tr>
-                    {% endfor %}
-                </thead>
-                <tbody>
-                    {% for row in table|slice:"1:" %}
-                    <tr>
-                        {% for item in row %}
-                            {% if forloop.first %}
-                                <td>{{ item }}</td>
-                            {% elif item == True %}
-                                <td class="checked"><i class="fas fa-check-square"></i></td>
-                            {% else %}
-                                <td></td>
-                            {% endif %}
+                    </thead>
+                    <tbody>
+                        {% for row in table|slice:"1:" %}
+                        <tr>
+                            {% for item in row %}
+                                {% if forloop.first %}
+                                    <td>
+                                    <a href="{% url 'course_selector:courses' %}/{{ item.pk }}">
+                                        {{ item.name }}
+                                    </a> 
+                                    </td>
+                                {% elif item == True %}
+                                    <td class="checked"><i class="fas fa-check-square"></i></td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
                         {% endfor %}
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            {% endif %}
+                    </tbody>
+                </table>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>
