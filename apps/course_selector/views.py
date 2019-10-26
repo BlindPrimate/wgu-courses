@@ -14,9 +14,7 @@ class CourseList(ListView):
     model = Course
 
 class DegreesList(TemplateView):
-    # context_object_name = 'degrees'
-    # template_name = 'course_selector/degree_list.html'
-    def get(self, request):
+    def get(self, request, pk):
         context = {}
         context['categorized'] = School.objects.all()
         context['degrees'] =  Degree.objects.all()
