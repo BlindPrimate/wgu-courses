@@ -2825,9 +2825,37 @@ body {
   font-family: "Open Sans", sans-serif;
   margin: 0;
   padding: 0;
-  color: #003057; }
+  color: #003057;
+  font-size: 62.5%;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column; }
   body a {
     color: #327da9; }
+
+h1 {
+  font-size: 3.2em; }
+
+h2 {
+  font-size: 2.8em; }
+
+h3 {
+  font-size: 2.4em; }
+
+h4 {
+  font-size: 2.2em; }
+
+h5 {
+  font-size: 1.8em; }
+
+h6 {
+  font-size: 1.6em; }
+
+p {
+  font-size: 1.2em; }
+
+a {
+  font-size: 1.3em; }
 
 .clearfix:after {
   content: "";
@@ -2885,7 +2913,8 @@ input[type=checkbox] {
   text-decoration: none; }
 
 #main-content {
-  padding: 20px 0 20px; }
+  padding: 20px 0 20px;
+  flex: 1; }
 
 #home-jumbotron {
   background: #327da9;
@@ -2901,21 +2930,22 @@ input[type=checkbox] {
     color: #327da9;
     text-decoration: none; }
   #nav-bar #logo {
-    float: left; }
+    float: left;
+    font-size: 1.6em; }
   #nav-bar .menu {
     float: right; }
     #nav-bar .menu li {
       display: inline;
       margin: 0 15px; }
     #nav-bar .menu a {
-      font-size: 0.9em;
+      font-size: 1.4em;
       margin: 10px 0;
       padding: 2px 0; }
       #nav-bar .menu a.active {
         border-bottom: 2px solid #327da9; }
 
 #side-menu a {
-  font-size: 0.8em;
+  font-size: 1.4em;
   text-decoration: none;
   padding: 7px 10px;
   border-radius: 2px;
@@ -2935,15 +2965,14 @@ input[type=checkbox] {
   margin-right: 20px;
   box-shadow: 0 0 5px rgba(40, 40, 40, 0.05); }
   .course-card .comp-units .comp-header {
-    display: inline;
+    display: inline-block;
     background-color: #4698c8;
-    width: 100%;
     margin: 0;
     color: white;
     padding: 5px 10px;
-    font-size: 1em; }
+    font-size: 1.3em; }
     .course-card .comp-units .comp-header p {
-      font-size: 0.6em;
+      font-size: 1.1em;
       margin: 0; }
   .course-card .comp-units p {
     margin: 0;
@@ -2962,20 +2991,54 @@ input[type=checkbox] {
 
 .more-box a {
   text-decoration: none;
-  font-size: 0.8em; }
+  font-size: 1.2em; }
 
 .checked {
-  text-align: center;
-  vertical-align: middle; }
-  .checked .fa-check-square {
+  text-align: center; }
+  .checked span:after {
+    content: '\2714';
+    display: block;
     color: green;
-    margin: auto;
-    vertical-align: middle; }
+    padding: 5px; }
+
+#degree-picker .form-button {
+  margin-bottom: 10px;
+  margin-left: 5px; }
 
 #degree-picker li {
   padding: 3px;
-  font-size: .75em; }
+  font-size: 1.2em; }
   #degree-picker li input {
     top: 3px; }
+
+#degree-table a {
+  font-size: 1.3em;
+  text-decoration: none; }
+
+#degree-table .checked {
+  font-size: 1.6em; }
+
+#footer {
+  background: #494848;
+  color: white;
+  padding: 20px;
+  margin-top: 50px;
+  border-top: 1px solid #8c8c8c; }
+  #footer a {
+    color: white;
+    text-decoration: none; }
+  #footer ul {
+    margin: 0;
+    padding: 0;
+    display: flex; }
+    #footer ul li {
+      flex: 1 100%;
+      justify-content: space-around;
+      margin: 0;
+      padding: 0;
+      display: inline; }
+      #footer ul li a {
+        text-align: center;
+        display: block; }
 
 /*# sourceMappingURL=app.css.map */

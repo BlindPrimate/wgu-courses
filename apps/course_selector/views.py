@@ -23,6 +23,9 @@ class DegreeComparer(FormView):
     form_class = DegreeComparerForm
 
     def build_matrix(self, degrees, courses):
+        '''
+        Builds the matrix for constructing the degree comparer table
+        ''' 
         pruned_courses= courses.distinct()
 
         matrix = [[None, *degrees]]
@@ -34,10 +37,6 @@ class DegreeComparer(FormView):
                 else:
                     row.append(False)
             matrix.append(row)
-
-
-
-        
         return matrix
 
 

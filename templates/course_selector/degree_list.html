@@ -26,26 +26,32 @@
                             <h4>{{ degree.degree_type }} {{ degree.name }}</h4>
                             <p>{{ degree.description }}</p>
                             <a href="{{ degree.link }}">Official WGU Degree Page</a>
-                            <h6>Courses Included</h6>
-                            <ul class="clear-list">
-                                {% for course in degree.courses.all %}
-                                    <li>
-                                        <a href="{% url 'course_selector:courses' %}/{{course.id}}">
-                                            {{ course.name }}
-                                        </a>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                            {% if degree.earned_certifications.all %}
-                            <h4>Certifications Included</h4>
-                            <ul class="clear-list">
-                                {% for cert in degree.earned_certifications.all %}
-                                    <li>
-                                        <a href="{{cert.link}}">{{ cert.name }}</a>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                            {% endif %}
+                            <div class="row">
+                                <div class="more-box col-lg-6">
+                                    <h6>Courses Included</h6>
+                                    <ul class="clear-list">
+                                        {% for course in degree.courses.all %}
+                                            <li>
+                                                <a href="{% url 'course_selector:courses' %}/{{course.id}}">
+                                                    {{ course.name }}
+                                                </a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                {% if degree.earned_certifications.all %}
+                                <div class="more-box col-lg-6">
+                                    <h6>Certifications Included</h6>
+                                    <ul class="clear-list">
+                                        {% for cert in degree.earned_certifications.all %}
+                                            <li>
+                                                <a href="{{cert.link}}">{{ cert.name }}</a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                {% endif %}
+                            </div>
                         </div>
                     {% endfor %}
                 </div>

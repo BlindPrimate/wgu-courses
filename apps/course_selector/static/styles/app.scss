@@ -25,12 +25,41 @@ body {
     margin: 0;
     padding: 0;
     color: $wgu-blue;
+    font-size: 62.5%;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
     a {
         color: $wgu-text-blue;
     }
 }
 
+h1 {
+    font-size: 3.2em;
+}
+h2 {
+    font-size: 2.8em;
+}
+h3 {
+    font-size: 2.4em;
+}
+h4 {
+    font-size: 2.2em;
+}
+h5 {
+    font-size: 1.8em;
+}
+h6 {
+    font-size: 1.6em;
+}
 
+p {
+    font-size: 1.2em;
+}
+
+a {
+    font-size: 1.3em;
+}
 // utility classes
 .clearfix {
     &:after {
@@ -105,6 +134,7 @@ input[type=checkbox] {
 
 #main-content {
     padding: 20px 0 20px;
+    flex: 1;
 }
 
 
@@ -127,6 +157,7 @@ input[type=checkbox] {
     }
     #logo {
         float: left;
+        font-size: 1.6em;
     }
     .menu {
         float: right;
@@ -135,7 +166,7 @@ input[type=checkbox] {
             margin: 0 15px;
         }
         a {
-            font-size: 0.9em;
+            font-size: 1.4em;
             margin: 10px 0;
             padding: 2px 0;
             &.active {
@@ -148,7 +179,7 @@ input[type=checkbox] {
 
 #side-menu {
     a {
-        font-size: 0.8em;
+        font-size: 1.4em;
         text-decoration: none;
         padding: 7px 10px;
         border-radius: 2px;
@@ -173,15 +204,14 @@ input[type=checkbox] {
         margin-right: 20px;
         box-shadow: 0 0 5px  rgba(40, 40, 40, 0.05);
         .comp-header {
-            display: inline;
+            display: inline-block;
             background-color: lighten($wgu-text-blue, 10%);
-            width: 100%;
             margin: 0;
             color: white;
             padding: 5px 10px;
-            font-size: 1em;
+            font-size: 1.3em;
             p {
-                font-size: 0.6em;
+                font-size: 1.1em;
                 margin: 0;
             }
         }
@@ -211,28 +241,72 @@ input[type=checkbox] {
     }
     a {
         text-decoration: none;
-        font-size: 0.8em;
-
+        font-size: 1.2em;
     }
 }
 
 .checked {
     text-align: center;
-    vertical-align: middle;
-    .fa-check-square {
-        color: green;
-        margin: auto;
-        vertical-align: middle;
+    span {
+        &:after {
+            content: '\2714';
+            display: block;
+            color: green;
+            padding: 5px;
+        }
     }
 }
 
 
 #degree-picker {
+    .form-button {
+        margin-bottom: 10px;
+        margin-left: 5px;
+    }
     li {
         padding: 3px;
-        font-size: .75em;
+        font-size: 1.2em;
         input {
             top: 3px;
+        }
+    }
+}
+
+#degree-table {
+    a {
+        font-size: 1.3em;
+        text-decoration: none;
+    }
+    .checked {
+        font-size: 1.6em;
+    }
+}
+
+
+#footer {
+    background: rgb(73, 72, 72);
+    color: white;
+    padding: 20px;
+    margin-top: 50px;
+    border-top: 1px solid rgb(140, 140, 140);
+    a {
+        color: white;
+        text-decoration: none;
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        li {
+            flex: 1 100%;
+            justify-content: space-around;
+            margin: 0;
+            padding: 0;
+            display: inline;
+            a {
+                text-align: center;
+                display: block;
+            }
         }
     }
 }
