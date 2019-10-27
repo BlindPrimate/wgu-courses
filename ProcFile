@@ -1,0 +1,1 @@
+web: gunicorn wgu_course.wsgi --log-file -

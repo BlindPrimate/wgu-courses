@@ -14,7 +14,7 @@ class CourseList(ListView):
     model = Course
 
 class DegreesList(TemplateView):
-    def get(self, request, pk):
+    def get(self, request, **kwargs):
         context = {}
         context['categorized'] = School.objects.all()
         context['degrees'] =  Degree.objects.all()
