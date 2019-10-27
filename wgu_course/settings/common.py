@@ -21,8 +21,6 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -35,6 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'sass_processor',
     'apps.course_selector',
+    'gunicorn',
 ]
 
 MIDDLEWARE = [
@@ -71,6 +70,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'wgu_course.wsgi.application'
 
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
@@ -131,3 +132,9 @@ STATICFILES_FINDERS = [
     'sass_processor.finders.CssFinder',
 ]
 
+# Django Sass
+SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR,'static')
+
+SASS_PROCESSOR_INCLUDE_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
