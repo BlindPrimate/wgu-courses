@@ -44,12 +44,19 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 
 
 ROOT_URLCONF = 'wgu_course.urls'
 
+ALLOWED_HOSTS = [
+    'wgu-viewer.herokuapp.com',
+    '*.herokuapp.com',
+    'localhost',
+    '127.0.0.1',
+]
 
 
 TEMPLATES = [
@@ -82,6 +89,7 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

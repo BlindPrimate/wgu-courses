@@ -2,6 +2,5 @@
 .vscode
 __pycache__
 *.pyc
-migrations/
 node_modules/
 wgu_course/settings/secret_key.txt
