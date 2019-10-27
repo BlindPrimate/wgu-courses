@@ -1,7 +1,7 @@
 
 {% extends 'core/base.html'%}
 {% block title %}
-    Degree Program Comparer
+    WGU Viewer | Degree Program Comparer
 {% endblock %}
 {% block content %}
 <div id="main-content">
@@ -60,6 +60,8 @@
                         {% endfor %}
                     </tbody>
                 </table>
+                {% else %}
+                    <h6 class="text-align-center">Please choose at least two degrees from the list to see their comparisons</h6>
                 {% endif %}
             </div>
         </div>
