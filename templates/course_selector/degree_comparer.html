@@ -42,6 +42,9 @@
                     </thead>
                     <tbody>
                         {% for row in table|slice:"1:" %}
+                        {% if row|length <= 2 %}
+                            <td>{{ row.all|slice:"0" }}</td>
+                        {% endif %}
                         <tr>
                             {% for item in row %}
                                 {% if forloop.first %}

@@ -2,6 +2,10 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView, FormView, TemplateView
 from .models import Course, Degree, School, CourseType
 from .forms import DegreeComparerForm
+from django.db.models import Count
+from pprint import PrettyPrinter
+
+pp = PrettyPrinter(indent=4)
 
 # Create your views here.
 
@@ -34,17 +38,25 @@ class DegreeComparer(FormView):
         '''
         Builds the matrix for constructing the degree comparer table
         ''' 
-        pruned_courses= courses.distinct()
+        pruned_courses = courses.distinct().order_by('course_type')
+        course_types = pruned_courses.values('course_type').distinct().annotate(name_count=Count('course_type'))
 
         matrix = [[None, *degrees]]
-        for course in pruned_courses:
-            row = [course]
-            for degree in degrees:
-                if Degree.objects.filter(id=degree.id, courses=course).exists():
-                    row.append(True)
-                else:
-                    row.append(False)
-            matrix.append(row)
+        for course_type in course_types:
+            print(course_type)
+            matrix.append([course_type])
+            for course in pruned_courses:
+                row = []
+                if course.course_type.id == course_type['course_type'] and len(row) < 1:
+                    row.append(course)
+                    for degree in degrees:
+                        if course in degree.courses.all():
+                            row.append(True)
+                        else:
+                            row.append(False)
+                    matrix.append(row)
+
+        # pp.pprint(matrix)
         return matrix
 
 
@@ -52,9 +64,10 @@ class DegreeComparer(FormView):
 
     def post(self, request):
         form = DegreeComparerForm(request.POST)
-        degrees = Degree.objects.filter(pk__in=request.POST.getlist('degrees'))
-        courses = Course.objects.filter(degrees__in=degrees)
-        table_data = self._build_matrix(degrees, courses)
+        degrees = Degree.objects.all()
+        queried_degrees = degrees.filter(pk__in=request.POST.getlist('degrees'))
+        courses = Course.objects.filter(degrees__in=queried_degrees)
+        table_data = self._build_matrix(queried_degrees, courses)
             
         return_obj = {
             'form':form,
