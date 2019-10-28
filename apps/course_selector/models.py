@@ -11,12 +11,20 @@ class Certification(models.Model):
     description = models.CharField(blank=True, max_length=10000)
     link = models.URLField(default="http://www.wgu.edu")
 
+    class Meta:
+        ordering = ['name']
+
     def __str__(self):
         return self.name
 
+class CourseType(models.Model):
+    course_type = models.CharField(blank=False, max_length=30)
+    def __str__(self):
+        return self.course_type
 
 class Course(models.Model):
     name = models.CharField(blank=False, max_length=255)
+    course_type = models.ForeignKey(CourseType, blank=True, null=True, on_delete=models.PROTECT)
     course_number = models.CharField(blank=False, default="C", max_length=4)
     description = models.TextField(blank=False, max_length=10000)
     prereqs = models.ManyToManyField('self', blank=True, verbose_name="Prerequisites")
