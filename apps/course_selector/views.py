@@ -34,30 +34,37 @@ class DegreeComparer(FormView):
     template_name = 'course_selector/degree_comparer.html'
     form_class = DegreeComparerForm
 
-    def _build_matrix(self, degrees, courses):
+    def _build_table(self, degrees, courses):
         '''
         Builds the matrix for constructing the degree comparer table
         ''' 
-        pruned_courses = courses.distinct().order_by('course_type')
-        course_types = pruned_courses.values('course_type').distinct().annotate(name_count=Count('course_type'))
 
-        matrix = [[None, *degrees]]
+        pruned_courses = courses.distinct()
+        course_type_list = pruned_courses.values('course_type').distinct()
+        course_types = CourseType.objects.filter(courses__in=course_type_list).select_related()
+
+        table = {
+            "header": [None, *degrees],
+            "body": []
+        }
+
         for course_type in course_types:
-            print(course_type)
-            matrix.append([course_type])
-            for course in pruned_courses:
-                row = []
-                if course.course_type.id == course_type['course_type'] and len(row) < 1:
-                    row.append(course)
-                    for degree in degrees:
-                        if course in degree.courses.all():
-                            row.append(True)
-                        else:
-                            row.append(False)
-                    matrix.append(row)
-
-        # pp.pprint(matrix)
-        return matrix
+            table['body'].append({
+                "name": course_type,
+            })
+            for course in course_type.courses.all():
+                table_entry_obj = {
+                    "name": course.name,
+                    "entry": [],
+                }
+                for degree in degrees:
+                    if course in degree.courses.all():
+                        table_entry_obj['entry'].append(True)
+                    else:
+                        table_entry_obj['entry'].append(False)
+                table['body'].append(table_entry_obj)
+        pp.pprint(table)
+        return table
 
 
 
@@ -67,12 +74,12 @@ class DegreeComparer(FormView):
         degrees = Degree.objects.all()
         queried_degrees = degrees.filter(pk__in=request.POST.getlist('degrees'))
         courses = Course.objects.filter(degrees__in=queried_degrees)
-        table_data = self._build_matrix(queried_degrees, courses)
+        table_data = self._build_table(queried_degrees, courses)
             
         return_obj = {
             'form':form,
-            'degrees': Degree.objects.all(),
-            'table': table_data
+            'degrees': degrees,
+            'table': table_data,
         }
         return render(request, 'course_selector/degree_comparer.html', return_obj)
 

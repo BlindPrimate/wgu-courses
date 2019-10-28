@@ -24,13 +24,12 @@
                 {% if table %}
                 <table id="degree-table" class="table">
                     <thead>
-                        {% for row in table|slice:":1" %}
                         <tr>
-                            {% for degree in row %}
+                            {% for degree in table.header %}
                                 {% if degree %}
                                     <th>
                                         <a href="{% url 'course_selector:degrees' %}/{{ degree.pk }}">
-                                            {{ degree }}
+                                            {{ degree.degree_type }} {{ degree.name }}
                                         </a>
                                     </th>
                                 {% else %}
@@ -38,28 +37,28 @@
                                 {% endif %}
                             {% endfor %}
                         </tr>
-                        {% endfor %}
                     </thead>
                     <tbody>
-                        {% for row in table|slice:"1:" %}
-                        {% if row|length <= 2 %}
-                            <td>{{ row.all|slice:"0" }}</td>
-                        {% endif %}
+                        {% for course_row in table.body %}
                         <tr>
-                            {% for item in row %}
-                                {% if forloop.first %}
-                                    <td>
+                            {% if not course_row.entry %}
+                                <td>{{ course_row.name }}</td>
+                            {% elif course_row.entry %}
+                                <td>
                                     <a href="{% url 'course_selector:courses' %}/{{ item.pk }}">
-                                        {{ item.name }}
+                                        {{ course_row.name }}
                                     </a> 
-                                    </td>
-                                {% elif item == True %}
+                                </td>
+                            {% endif %}
+                            {% for check in course_row.entry %}
+                                {% if check %}
                                     <td class="checked"><span></span></td>
                                 {% else %}
                                     <td></td>
                                 {% endif %}
                             {% endfor %}
                         </tr>
+                        <tr> {{ table.name }} </tr>
                         {% endfor %}
                     </tbody>
                 </table>
