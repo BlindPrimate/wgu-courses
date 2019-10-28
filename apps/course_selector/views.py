@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, FormView, TemplateView
-from .models import Course, Degree, School
+from .models import Course, Degree, School, CourseType
 from .forms import DegreeComparerForm
 
 # Create your views here.
@@ -8,10 +8,16 @@ from .forms import DegreeComparerForm
 def index(request):
     return render(request, 'core/index.html')
 
-class CourseList(ListView):
-    context_object_name = 'courses'
-    template_name = 'course_selector/course_list.html'
-    model = Course
+class CourseList(TemplateView):
+    def get(self, request, **kwargs):
+        courses = Course.objects.all()
+        course_types = CourseType.objects.all()
+        context = {
+            "all_courses": courses,
+            "categorized": course_types,
+            "uncategorized": courses.filter(course_type__isnull=True)
+        }
+        return render(request, template_name='course_selector/course_list.html', context=context)
 
 class DegreesList(TemplateView):
     def get(self, request, **kwargs):
@@ -24,7 +30,7 @@ class DegreeComparer(FormView):
     template_name = 'course_selector/degree_comparer.html'
     form_class = DegreeComparerForm
 
-    def build_matrix(self, degrees, courses):
+    def _build_matrix(self, degrees, courses):
         '''
         Builds the matrix for constructing the degree comparer table
         ''' 
@@ -48,7 +54,7 @@ class DegreeComparer(FormView):
         form = DegreeComparerForm(request.POST)
         degrees = Degree.objects.filter(pk__in=request.POST.getlist('degrees'))
         courses = Course.objects.filter(degrees__in=degrees)
-        table_data = self.build_matrix(degrees, courses)
+        table_data = self._build_matrix(degrees, courses)
             
         return_obj = {
             'form':form,

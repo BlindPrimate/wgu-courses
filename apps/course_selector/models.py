@@ -24,7 +24,12 @@ class CourseType(models.Model):
 
 class Course(models.Model):
     name = models.CharField(blank=False, max_length=255)
-    course_type = models.ForeignKey(CourseType, blank=True, null=True, on_delete=models.PROTECT)
+    course_type = models.ForeignKey(
+        CourseType, 
+        default=1,
+        on_delete=models.PROTECT,
+        related_name="courses"
+    )
     course_number = models.CharField(blank=False, default="C", max_length=4)
     description = models.TextField(blank=False, max_length=10000)
     prereqs = models.ManyToManyField('self', blank=True, verbose_name="Prerequisites")

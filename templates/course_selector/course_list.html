@@ -8,7 +8,19 @@
         <div class="row">
             <div id="side-menu" class="col-lg-3 col-md-4 col-sm-12">
                 <ul class="clear-list">
-                {% for course in courses %}
+                {% for course_type in categorized %}
+                    <h6>{{ course_type.course_type }}</h6>
+                    {% for course in course_type.courses.all %}
+                    <li>
+                        <a 
+                        data-card-index-link="{{ course.pk }}" 
+                        href="#">
+                            {{course.name}}
+                        </a>
+                    </li>
+                    {% endfor %}
+                {% endfor %}
+                {% for course in uncategorized %}
                     <li>
                         <a 
                         data-card-index-link="{{ course.pk }}" 
@@ -20,7 +32,7 @@
                 </ul>
             </div>
             <div class="col-lg-9 col-md-8 col-sm-12">
-                {% for course in courses %}
+                {% for course in all_courses %}
                     <div class="course-card hidden" data-card-index="{{ course.pk }}">
                         <h4>
                             {{course.name}}

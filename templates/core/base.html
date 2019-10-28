@@ -19,7 +19,7 @@
                 <li>
                     {% url 'course_selector:courses' as url %}
                     <a class="{% if url in request.path  %}active{% endif %}" href="{{ url }}">
-                        Course List
+                        Courses
                     </a>
                 </li>
                 <li>
