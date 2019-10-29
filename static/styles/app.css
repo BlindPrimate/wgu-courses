@@ -2985,7 +2985,7 @@ input[type=checkbox] {
     .course-card .comp-units p span {
       font-size: 0.7em; }
 
-.more-box h6:after {
+.underline-accent:after, .more-box h6:after {
   content: "";
   padding: 0 0 5px;
   width: 30px;
@@ -3017,12 +3017,13 @@ input[type=checkbox] {
   #degree-picker li input {
     top: 3px; }
 
-#degree-table a {
-  font-size: 1.3em;
-  text-decoration: none; }
-
-#degree-table .checked {
-  font-size: 1.6em; }
+.course-table {
+  width: 100%; }
+  .course-table a {
+    font-size: 1.3em;
+    text-decoration: none; }
+  .course-table .checked {
+    font-size: 1.6em; }
 
 #footer {
   background: #494848;

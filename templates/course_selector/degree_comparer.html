@@ -21,47 +21,73 @@
                 </div>
             </div>
             <div class="col-lg-9">
-                {% if table %}
-                <table id="degree-table" class="table">
-                    <thead>
-                        <tr>
-                            {% for degree in table.header %}
-                                {% if degree %}
-                                    <th>
-                                        <a href="{% url 'course_selector:degrees' %}/{{ degree.pk }}">
-                                            {{ degree.degree_type }} {{ degree.name }}
-                                        </a>
-                                    </th>
-                                {% else %}
-                                    <th></th>
-                                {% endif %}
+                {% if table_header or table_courses or table_certs %}
+                    <table class="course-table table">
+                        {% if table_header %}
+                            <thead>
+                                <tr>
+                                {% for header_item in table_header %}
+                                    {% if header_item %}
+                                        <th>
+                                            <a href="{% url 'course_selector:degrees' %}/{{ header_item.id }}">
+                                                {{ header_item }}
+                                            </a>
+                                        </th>
+                                    {% else %}
+                                        <th></th>
+                                    {% endif %}
+                                {% endfor %}
+                                </tr>
+                            </thead>
+                        {% endif %}
+                    {% if table_courses %}
+                    {% for table in table_courses %}
+                        <tbody>
+                            <tr class="table-subheading"><td><h6 class="underline-accent">{{ table.name }}</h6></td></tr>
+                            {% for row in table.body %}
+                            <tr>
+                                {% for item in row %}
+                                    {% if item == True %}
+                                        <td class="checked"><span></span></td>
+                                    {% elif item  == False %}
+                                        <td></td>
+                                    {% else %}
+                                        <td>
+                                            <a href="{% url 'course_selector:courses' %}/{{ item.id }}">
+                                                {{ item.name }}
+                                            </a>
+                                        </td>
+                                    {% endif %}
+
+                                {% endfor %}
+                            </tr>
                             {% endfor %}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for course_row in table.body %}
-                        <tr>
-                            {% if not course_row.entry %}
-                                <td>{{ course_row.name }}</td>
-                            {% elif course_row.entry %}
-                                <td>
-                                    <a href="{% url 'course_selector:courses' %}/{{ item.pk }}">
-                                        {{ course_row.name }}
-                                    </a> 
-                                </td>
-                            {% endif %}
-                            {% for check in course_row.entry %}
-                                {% if check %}
-                                    <td class="checked"><span></span></td>
-                                {% else %}
-                                    <td></td>
-                                {% endif %}
+                        </tbody>
+                    {% endfor %}
+                        <tbody>
+                            <tr class="table-subheading">
+                                <td><h6 class="underline-accent">{{ table_certs.title }}</h6></td>
+                            </tr>
+                            {% for row in table_certs.body %}
+                            <tr>
+                                {% for item in row %}
+                                    {% if item == True %}
+                                        <td class="checked"><span></span></td>
+                                    {% elif item  == False %}
+                                        <td></td>
+                                    {% else %}
+                                        <td>
+                                            <a href="{{ item.link }}">
+                                                {{ item.name }}
+                                            </a>
+                                        </td>
+                                    {% endif %}
+                                {% endfor %}
+                            </tr>
                             {% endfor %}
-                        </tr>
-                        <tr> {{ table.name }} </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                    {% endif %}
                 {% else %}
                     <h6 class="text-align-center">Please choose at least two degrees from the list to see their comparisons</h6>
                 {% endif %}

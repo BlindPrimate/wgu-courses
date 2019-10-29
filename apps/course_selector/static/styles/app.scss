@@ -233,17 +233,20 @@ input[type=checkbox] {
     }
 }
 
+.underline-accent {
+    &:after {
+        content: "";
+        padding: 0 0 5px;
+        width: 30px;
+        display: block;
+        border-bottom: 2px solid $wgu-text-blue;
+
+    }
+}
 
 .more-box {
     h6 {
-        &:after {
-            content: "";
-            padding: 0 0 5px;
-            width: 30px;
-            display: block;
-            border-bottom: 2px solid $wgu-text-blue;
-
-        }
+        @extend .underline-accent;
     }
     li {
         margin: 4px 0;
@@ -281,7 +284,8 @@ input[type=checkbox] {
     }
 }
 
-#degree-table {
+.course-table {
+    width: 100%;
     a {
         font-size: 1.3em;
         text-decoration: none;
