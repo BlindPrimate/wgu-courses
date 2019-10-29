@@ -2,9 +2,10 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView, FormView, TemplateView
 from .models import Course, Degree, School, CourseType, Certification
 from .forms import DegreeComparerForm
-from pprint import PrettyPrinter
+from django.db.models import Count
+# from pprint import PrettyPrinter
 
-pp = PrettyPrinter(indent=4)
+# pp = PrettyPrinter(indent=4)
 
 # Create your views here.
 
@@ -69,11 +70,15 @@ class DegreeComparer(FormView):
 
     def _build_table_courses(self, degrees, courses):
         '''
-        Builds the courses table for constructing the degree comparer
+        Returns an array of table objects to populate view
         ''' 
 
-        course_type_list = courses.values('course_type').distinct()
-        course_types = CourseType.objects.filter(courses__in=course_type_list).select_related().distinct()
+        # filter out any repeat course types (filtering for unique entries as .unique() will not work on our db)
+        course_type_lengths = courses.values('course_type').annotate(occurence_count=Count('course_type')).filter(occurence_count=1)
+        course_type_list = courses.filter(course_type__in=[x['course_type'] for x in course_type_lengths])
+
+        # retrieve course types based on unique courses in course_type_list
+        course_types = CourseType.objects.filter(courses__in=course_type_list).annotate(course_count=Count('courses')).order_by('-course_count')
 
         tables = []
         for course_type in course_types:
@@ -81,6 +86,7 @@ class DegreeComparer(FormView):
             tables.append(table)
 
         return tables
+
 
     def post(self, request):
         form = DegreeComparerForm(request.POST)
@@ -95,9 +101,5 @@ class DegreeComparer(FormView):
             'table_courses': self._build_table_courses(queried_degrees, courses),
             'table_certs': self._build_table_certs(queried_degrees),
         }
-        # pp.pprint(return_obj['table_header'][1].name)
-        # pp.pprint(return_obj['table_header'])
-        # pp.pprint(return_obj['table_courses'])
-        pp.pprint(return_obj)
         return render(request, 'course_selector/degree_comparer.html', return_obj)
 

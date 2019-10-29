@@ -2958,7 +2958,7 @@ input[type=checkbox] {
     background-color: #327da9;
     color: white; }
 
-.course-card .comp-units {
+.comp-units {
   overflow: hidden;
   display: inline-block;
   border: 1px solid #bcdaeb;
@@ -2967,22 +2967,20 @@ input[type=checkbox] {
   background-color: #e3f0f7;
   color: #003057;
   margin-right: 20px; }
-  .course-card .comp-units .comp-header {
+  .comp-units .comp-header {
     display: inline-block;
     background-color: #4698c8;
     margin: 0;
     color: white;
-    padding: 5px 10px;
-    font-size: 1.3em; }
-    .course-card .comp-units .comp-header p {
-      font-size: 1.1em;
+    padding: 5px 10px; }
+    .comp-units .comp-header p {
       margin: 0; }
-  .course-card .comp-units p {
+  .comp-units p {
     margin: 0;
     font-size: 1em;
     display: inline-block;
     padding: 0 10px; }
-    .course-card .comp-units p span {
+    .comp-units p span {
       font-size: 0.7em; }
 
 .underline-accent:after, .more-box h6:after {
@@ -2992,8 +2990,8 @@ input[type=checkbox] {
   display: block;
   border-bottom: 2px solid #327da9; }
 
-.more-box li {
-  margin: 4px 0; }
+.more-box ul li {
+  margin: 4px 0 0 2px; }
 
 .more-box a {
   text-decoration: none;
@@ -3019,9 +3017,21 @@ input[type=checkbox] {
 
 .course-table {
   width: 100%; }
+  .course-table .comp-units {
+    margin-left: 2px;
+    display: inline-block;
+    margin-top: 5px; }
+    .course-table .comp-units .comp-header {
+      padding: 2px 4px;
+      font-size: 1.3em; }
+    .course-table .comp-units p {
+      font-size: 1.4em;
+      padding: 0 6px 0 4px; }
   .course-table a {
-    font-size: 1.3em;
-    text-decoration: none; }
+    display: block;
+    margin-left: 3px;
+    text-decoration: none;
+    font-size: 1.5em; }
   .course-table .checked {
     font-size: 1.6em; }
 

@@ -21,6 +21,8 @@ class CourseType(models.Model):
     course_type = models.CharField(blank=False, max_length=50)
     def __str__(self):
         return self.course_type
+    class Meta:
+        ordering = ['course_type']
 
 class Course(models.Model):
     name = models.CharField(blank=False, max_length=255)

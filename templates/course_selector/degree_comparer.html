@@ -56,6 +56,12 @@
                                             <a href="{% url 'course_selector:courses' %}/{{ item.id }}">
                                                 {{ item.name }}
                                             </a>
+                                            <div class="comp-units">
+                                                <div class="comp-header">
+                                                    {{ item.course_number }}
+                                                </div>
+                                                <p>{{ item.comp_units }} <span>CUs</span></p>
+                                            </div>
                                         </td>
                                     {% endif %}
 
