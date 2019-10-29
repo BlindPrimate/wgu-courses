@@ -73,7 +73,7 @@ class DegreeComparer(FormView):
         ''' 
 
         course_type_list = courses.values('course_type').distinct()
-        course_types = CourseType.objects.filter(courses__in=course_type_list).select_related()
+        course_types = CourseType.objects.filter(courses__in=course_type_list).select_related().distinct()
 
         tables = []
         for course_type in course_types:
@@ -81,27 +81,6 @@ class DegreeComparer(FormView):
             tables.append(table)
 
         return tables
-
-        # pp.pprint([self._build_course_table(courses, degrees, x) for x in course_types])
-
-        # for course_type in course_types:
-        #     table['body'].append({
-        #         "name": course_type,
-        #     })
-        #     for course in course_type.courses.filter(id__in=pruned_courses):
-        #         table_entry_obj = {
-        #             "name": course.name,
-        #             "entry": [],
-        #         }
-        #         for degree in degrees:
-        #             if course in degree.courses.all():
-        #                 table_entry_obj['entry'].append(True)
-        #             else:
-        #                 table_entry_obj['entry'].append(False)
-        #         table['body'].append(table_entry_obj)
-        
-        # pp.pprint(table)
-        # return table
 
     def post(self, request):
         form = DegreeComparerForm(request.POST)
