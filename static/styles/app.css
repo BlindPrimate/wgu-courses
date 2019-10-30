@@ -3018,7 +3018,7 @@ input[type=checkbox] {
 .course-table {
   width: 100%; }
   .course-table .table-subheading {
-    background-color: whitesmoke; }
+    background-color: #ebebeb; }
     .course-table .table-subheading h6 {
       margin: 20px 0 0; }
   .course-table tbody {
