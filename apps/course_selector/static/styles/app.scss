@@ -286,6 +286,15 @@ input[type=checkbox] {
 
 .course-table {
     width: 100%;
+    .table-subheading {
+        background-color: rgb(245, 245, 245);
+        h6 {
+            margin: 20px 0 0;
+        }
+    }
+    tbody {
+        padding-bottom: 50px;
+    }
     .comp-units {
         margin-left: 2px;
         display: inline-block;

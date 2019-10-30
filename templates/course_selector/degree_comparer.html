@@ -44,7 +44,10 @@
                     {% if table_courses %}
                     {% for table in table_courses %}
                         <tbody>
-                            <tr class="table-subheading"><td><h6 class="underline-accent">{{ table.name }}</h6></td></tr>
+                            <tr class="table-subheading">
+                                <td colspan={{ table_columns }}>
+                                <h6 class="underline-accent">{{ table.name }}</h6></td>
+                            </tr>
                             {% for row in table.body %}
                             <tr>
                                 {% for item in row %}
@@ -73,7 +76,7 @@
                     {% endfor %}
                         <tbody>
                             <tr class="table-subheading">
-                                <td><h6 class="underline-accent">{{ table_certs.title }}</h6></td>
+                                <td colspan={{ table_columns }}><h6 class="underline-accent">{{ table_certs.title }}</h6></td>
                             </tr>
                             {% for row in table_certs.body %}
                             <tr>

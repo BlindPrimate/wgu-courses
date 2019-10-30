@@ -3017,6 +3017,12 @@ input[type=checkbox] {
 
 .course-table {
   width: 100%; }
+  .course-table .table-subheading {
+    background-color: whitesmoke; }
+    .course-table .table-subheading h6 {
+      margin: 20px 0 0; }
+  .course-table tbody {
+    padding-bottom: 50px; }
   .course-table .comp-units {
     margin-left: 2px;
     display: inline-block;

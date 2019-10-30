@@ -100,6 +100,7 @@ class DegreeComparer(FormView):
             'table_header': [None, *[degree for degree in queried_degrees.all()]],
             'table_courses': self._build_table_courses(queried_degrees, courses),
             'table_certs': self._build_table_certs(queried_degrees),
+            'table_columns': len(queried_degrees) + 1,
         }
         return render(request, 'course_selector/degree_comparer.html', return_obj)
 
