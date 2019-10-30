@@ -308,10 +308,26 @@ input[type=checkbox] {
     .checked {
         font-size: 1.6em;
     }
+
+    table tbody {
+        overflow: auto;
+        display: block;
+    }
+}
+
+.table-fixed-head {
+    overflow-y: auto;
+    height: 85vh;
+    border-collapse: collapse;
+    th {
+        background-color: white;
+    }
 }
 
 
+
 #footer {
+    z-index: 0;
     background: rgb(73, 72, 72);
     color: white;
     padding: 20px;

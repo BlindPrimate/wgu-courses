@@ -43,6 +43,15 @@ const switch_card = (card_id) => {
     show_elements(target_card);
 }
 
+
+const table_fix_head = (e) => {
+    const el = e.target,
+          sT = el.scrollTop;
+    el.querySelectorAll("thead th").forEach(th => 
+      th.style.transform = `translateY(${sT-2}px)`
+    );
+}
+
 (() => {
 
     // event listener for card-switcher (coures & degrees page)
@@ -53,6 +62,9 @@ const switch_card = (card_id) => {
         }
     });
 
+    document.querySelectorAll(".table-fixed-head").forEach(el => {
+        el.addEventListener("scroll", table_fix_head);
+    });
 
     // prevent card-switching code from firing on anything other than card links
     const path = window.location.pathname.split('/');

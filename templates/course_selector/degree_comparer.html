@@ -22,9 +22,10 @@
             </div>
             <div class="col-lg-9">
                 {% if table_header or table_courses or table_certs %}
+                    <div class="table-fixed-head">
                     <table class="course-table table">
                         {% if table_header %}
-                            <thead>
+                            <thead class="">
                                 <tr>
                                 {% for header_item in table_header %}
                                     {% if header_item %}
@@ -93,6 +94,7 @@
                             {% endfor %}
                         </tbody>
                     </table>
+                    </div>
                     {% endif %}
                 {% else %}
                     <h6 class="text-align-center">Please choose at least two degrees from the list to see their comparisons</h6>

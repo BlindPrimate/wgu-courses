@@ -3034,8 +3034,19 @@ input[type=checkbox] {
     font-size: 1.5em; }
   .course-table .checked {
     font-size: 1.6em; }
+  .course-table table tbody {
+    overflow: auto;
+    display: block; }
+
+.table-fixed-head {
+  overflow-y: auto;
+  height: 85vh;
+  border-collapse: collapse; }
+  .table-fixed-head th {
+    background-color: white; }
 
 #footer {
+  z-index: 0;
   background: #494848;
   color: white;
   padding: 20px;
